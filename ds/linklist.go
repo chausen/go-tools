@@ -7,47 +7,47 @@ import (
 )
 
 type Node struct {
-	data int
-	next *Node
+	Data int
+	Next *Node
 }
 
 type LinkedList struct {
-	head *Node
+	Head *Node
 }
 
-func CreateLinkedList(data int) *LinkedList {
-	return &LinkedList{ head: &Node{ data: data, next: nil }}
+func CreateLinkedList(Data int) *LinkedList {
+	return &LinkedList{ Head: &Node{ Data: Data, Next: nil }}
 }
 
-func (ll *LinkedList) Add(data int) {
-	newNode := &Node{ data: data, next: nil }
+func (ll *LinkedList) Add(Data int) {
+	newNode := &Node{ Data: Data, Next: nil }
 
-	if ll.head == nil {
-		ll.head = newNode
+	if ll.Head == nil {
+		ll.Head = newNode
 	} else {
-		currentNode := ll.head
-		for currentNode.next != nil {
-			currentNode = currentNode.next
+		currentNode := ll.Head
+		for currentNode.Next != nil {
+			currentNode = currentNode.Next
 		}
-		currentNode.next = newNode
+		currentNode.Next = newNode
 	}
 }
 
 func (ll *LinkedList) Print() {
 	var b bytes.Buffer
-	n := ll.head
+	n := ll.Head
 
 	if n == nil {
 		fmt.Println("Empty")
 	}
 
-	b.WriteString(strconv.Itoa(n.data))
-	n = n.next
+	b.WriteString(strconv.Itoa(n.Data))
+	n = n.Next
 
 	for n != nil {
 		b.WriteString(" -> ")
-		b.WriteString(strconv.Itoa(n.data))
-		n = n.next
+		b.WriteString(strconv.Itoa(n.Data))
+		n = n.Next
 	}
 
 	fmt.Println(b.String())
