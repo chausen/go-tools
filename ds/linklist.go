@@ -15,12 +15,26 @@ type LinkedList struct {
 	Head *Node
 }
 
-func CreateLinkedList(Data int) *LinkedList {
-	return &LinkedList{ Head: &Node{ Data: Data, Next: nil }}
+// func CreateLinkedList() *LinkedList {
+// 	return &LinkedList{ Head: nil }
+// }
+
+// func CreateLinkedList(Data int) *LinkedList {
+// 	return &LinkedList{ Head: &Node{ Data: Data, Next: nil }}
+// }
+
+func CreateLinkedList(data ...int) *LinkedList {	
+	ll := &LinkedList{ Head: &Node{ Data: data[0], Next: nil }}
+
+	for i := 1; i < len(data); i++ {
+		ll.Add(data[i])
+	}
+	
+	return ll
 }
 
-func (ll *LinkedList) Add(Data int) {
-	newNode := &Node{ Data: Data, Next: nil }
+func (ll *LinkedList) Add(data int) {
+	newNode := &Node{ Data: data, Next: nil }
 
 	if ll.Head == nil {
 		ll.Head = newNode
