@@ -1,16 +1,19 @@
+// Package ds implements a simple library of data structures.
 package ds
 
 import (
 	"bytes"
-	"strconv"
 	"fmt"
+	"strconv"
 )
 
+// Node - an element in the linked list. Contains its data and a pointer to the next element.
 type Node struct {
 	Data int
 	Next *Node
 }
 
+// LinkedList - a simple singlely-linked list.
 type LinkedList struct {
 	Head *Node
 }
@@ -23,18 +26,20 @@ type LinkedList struct {
 // 	return &LinkedList{ Head: &Node{ Data: Data, Next: nil }}
 // }
 
-func CreateLinkedList(data ...int) *LinkedList {	
-	ll := &LinkedList{ Head: &Node{ Data: data[0], Next: nil }}
+// CreateLinkedList will create a linked list with an element for each parameter passed in.
+func CreateLinkedList(data ...int) *LinkedList {
+	var ll *LinkedList
 
-	for i := 1; i < len(data); i++ {
+	for i := 0; i < len(data); i++ {
 		ll.Add(data[i])
 	}
-	
+
 	return ll
 }
 
+// Add an element to the end of the linked list.
 func (ll *LinkedList) Add(data int) {
-	newNode := &Node{ Data: data, Next: nil }
+	newNode := &Node{Data: data, Next: nil}
 
 	if ll.Head == nil {
 		ll.Head = newNode
@@ -47,6 +52,7 @@ func (ll *LinkedList) Add(data int) {
 	}
 }
 
+// Print the linked list in the form, "head -> next -> ... -> tail"
 func (ll *LinkedList) Print() {
 	var b bytes.Buffer
 	n := ll.Head
@@ -67,6 +73,7 @@ func (ll *LinkedList) Print() {
 	fmt.Println(b.String())
 }
 
+// Add two linked lists together - not implemented yet
 func Add(a, b LinkedList) LinkedList {
 	return LinkedList{&Node{0, nil}}
 }
